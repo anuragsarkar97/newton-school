@@ -10,17 +10,17 @@ import org.ns.oops.service.ExecutorService;
 
 public class ExecutorServiceImpl implements ExecutorService {
 
-    private CashierService cashierService;
+    private CashierService cashierService = new CashServiceImpl();
 
     public Object execute(EXECMETHOD method, Object... value) {
 
         switch (method) {
 
             case ADD:
-                return cashierService.createCart();
-            case NEW:
                 cashierService.add((Product) value[0], (Cart) value[1]);
                 break;
+            case NEW:
+                return cashierService.createCart();
             case REMOVE:
                 cashierService.remove((String) value[0], (Cart) value[1]);
                 break;
